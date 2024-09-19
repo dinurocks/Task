@@ -3,27 +3,33 @@ import React from 'react';
 import {scale} from 'react-native-size-matters';
 import {colors} from '../constants/colors';
 import CustomText from './CustomText';
+import {ViewStyle} from 'react-native';
 
 interface Props extends TextInputProps {
   label: string;
   errorMessage?: string;
+  inputStyle?: ViewStyle;
 }
 
-const CustomInput = ({label, errorMessage, ...rest}: Props) => {
-  return (
-    <View style={styles.container}>
-      <CustomText textStyle={styles.label}>{label}</CustomText>
-      <TextInput
-        style={[
-          styles.input,
-          {borderColor: !!errorMessage ? colors.red : colors.grey},
-        ]}
-        {...rest}
-      />
-      <CustomText textStyle={styles.error}>{errorMessage}</CustomText>
-    </View>
-  );
-};
+const CustomInput = React.forwardRef<TextInput, Props>(
+  ({label, errorMessage, inputStyle, ...rest}, ref) => {
+    return (
+      <View style={styles.container}>
+        <CustomText textStyle={styles.label}>{label}</CustomText>
+        <TextInput
+          ref={ref}
+          style={[
+            styles.input,
+            inputStyle,
+            {borderColor: !!errorMessage ? colors.red : colors.grey},
+          ]}
+          {...rest}
+        />
+        <CustomText textStyle={styles.error}>{errorMessage}</CustomText>
+      </View>
+    );
+  },
+);
 
 export default CustomInput;
 

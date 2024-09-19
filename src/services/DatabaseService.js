@@ -47,3 +47,22 @@ export const getUsers = callback => {
     });
   });
 };
+
+export const updateUser = (email, name) => {
+  db.transaction(tx => {
+    tx.executeSql(
+      'UPDATE Users SET Name = ? WHERE Email = ?;',
+      [name, email],
+      (tx, results) => {
+        if (results.rowsAffected > 0) {
+          console.log('User updated:', results.rowsAffected);
+        } else {
+          console.log('No user found with the given email.');
+        }
+      },
+      error => {
+        console.error('Update error:', error);
+      },
+    );
+  });
+};

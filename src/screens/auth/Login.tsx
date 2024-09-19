@@ -92,7 +92,10 @@ const Login = () => {
         }}>
         <CustomText textStyle={{fontSize: scale(14)}}>
           Already have an account?{' '}
-          <CustomText textStyle={styles.signupText} onPress={handleSignup}>
+          <CustomText
+            textStyle={styles.signupText}
+            onPress={handleSignup}
+            disabled={loading}>
             Signup
           </CustomText>
         </CustomText>
