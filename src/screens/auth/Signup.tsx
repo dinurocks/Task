@@ -1,23 +1,13 @@
-import {
-  Alert,
-  Keyboard,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import React, {useState} from 'react';
-import CustomInput from '../../components/CustomInput';
-import {scale} from 'react-native-size-matters';
-import CustomButton from '../../components/CustomButton';
-import CustomText from '../../components/CustomText';
-import {StackActions, useNavigation} from '@react-navigation/native';
-import {AuthStackNames, RootStackNames} from '../../constants/routeName';
 import auth from '@react-native-firebase/auth';
+import {useNavigation} from '@react-navigation/native';
 import {FormikValues, useFormik} from 'formik';
+import React, {useState} from 'react';
+import {Alert, Keyboard, ScrollView, StyleSheet, View} from 'react-native';
+import {scale} from 'react-native-size-matters';
 import * as yup from 'yup';
+import CustomButton from '../../components/CustomButton';
+import CustomInput from '../../components/CustomInput';
+import CustomText from '../../components/CustomText';
 import {insertUser} from '../../services/DatabaseService';
 
 const signUpValidationSchema = yup.object().shape({

@@ -58,6 +58,7 @@ const Profile = () => {
         .then(() => {
           setIsEditing(false);
           updateUser(currentUser?.email, name);
+          Alert.alert('User name updated successfully');
         });
     }
   };
