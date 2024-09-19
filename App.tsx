@@ -1,10 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import RootStack from './src/routes/RootStack';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import {createUserTable} from './src/services/DatabaseService';
 
 const App = () => {
+  useEffect(() => {
+    createUserTable();
+  }, []);
   return (
     <NavigationContainer>
       <SafeAreaProvider>

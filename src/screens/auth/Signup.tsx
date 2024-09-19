@@ -18,6 +18,7 @@ import {AuthStackNames, RootStackNames} from '../../constants/routeName';
 import auth from '@react-native-firebase/auth';
 import {FormikValues, useFormik} from 'formik';
 import * as yup from 'yup';
+import {insertUser} from '../../services/DatabaseService';
 
 const signUpValidationSchema = yup.object().shape({
   name: yup.string().trim().required('Required'),
@@ -48,6 +49,7 @@ const Signup = () => {
             displayName: values.name,
           })
           .then(() => {
+            insertUser(values.email, values.name);
             setLoading(false);
           });
       })

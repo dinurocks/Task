@@ -13,6 +13,7 @@ const RootStack = () => {
 
   // Handle user state changes
   function onAuthStateChanged(user: any) {
+    user?.reload();
     setUser(user);
     console.log({user});
     if (initializing) setInitializing(false);
