@@ -44,7 +44,7 @@ const Login = () => {
       });
   };
 
-  const {handleChange, handleSubmit, values} = useFormik({
+  const {handleChange, handleSubmit, errors, touched} = useFormik({
     initialValues: {
       email: '',
       password: '',
@@ -66,11 +66,15 @@ const Login = () => {
         onChangeText={handleChange('email')}
         autoCapitalize="none"
         keyboardType="email-address"
+        errorMessage={errors.email && touched.email ? errors.email : ''}
       />
       <CustomInput
         label="Password"
         onChangeText={handleChange('password')}
         secureTextEntry
+        errorMessage={
+          errors.password && touched.password ? errors.password : ''
+        }
       />
       <CustomButton
         isLoading={loading}

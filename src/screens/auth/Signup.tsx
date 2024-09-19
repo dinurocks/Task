@@ -66,8 +66,9 @@ const Signup = () => {
       });
   };
 
-  const {handleChange, handleSubmit, values} = useFormik({
+  const {handleChange, handleSubmit, errors, touched} = useFormik({
     initialValues: {
+      name: '',
       email: '',
       password: '',
       confirmPass: '',
@@ -84,22 +85,33 @@ const Signup = () => {
     <ScrollView
       contentContainerStyle={styles.container}
       keyboardShouldPersistTaps="handled">
-      <CustomInput label="Name" onChangeText={handleChange('name')} />
+      <CustomInput
+        label="Name"
+        onChangeText={handleChange('name')}
+        errorMessage={errors.name && touched.name ? errors.name : ''}
+      />
       <CustomInput
         label="Email"
         onChangeText={handleChange('email')}
         keyboardType="email-address"
         autoCapitalize="none"
+        errorMessage={errors.email && touched.email ? errors.email : ''}
       />
       <CustomInput
         label="Password"
         onChangeText={handleChange('password')}
         secureTextEntry
+        errorMessage={
+          errors.password && touched.password ? errors.password : ''
+        }
       />
       <CustomInput
         label="Confirm Password"
         onChangeText={handleChange('confirmPass')}
         secureTextEntry
+        errorMessage={
+          errors.confirmPass && touched.confirmPass ? errors.confirmPass : ''
+        }
       />
       <CustomButton
         isLoading={loading}

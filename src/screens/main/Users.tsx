@@ -19,26 +19,14 @@ const Users = () => {
         data={users}
         keyExtractor={item => item.ID.toString()}
         renderItem={({item}) => (
-          <View
-            style={{
-              backgroundColor: colors.white,
-              padding: scale(10),
-              margin: scale(5),
-              borderRadius: scale(8),
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 5,
-            }}>
-            <CustomText style={styles.commonText}>Name: {item.Name}</CustomText>
-            <CustomText style={styles.commonText}>
+          <View style={styles.itemContainer}>
+            <CustomText textStyle={styles.commonText}>
+              Name: {item.Name}
+            </CustomText>
+            <CustomText textStyle={styles.commonText}>
               Email: {item.Email}
             </CustomText>
-            <CustomText style={styles.commonText}>
+            <CustomText textStyle={styles.commonText}>
               Signup Date: {item.SignupDate}
             </CustomText>
           </View>
@@ -54,5 +42,19 @@ const styles = StyleSheet.create({
   commonText: {
     fontSize: scale(14),
     fontFamily: '500',
+  },
+  itemContainer: {
+    backgroundColor: colors.white,
+    padding: scale(10),
+    margin: scale(8),
+    borderRadius: scale(8),
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });

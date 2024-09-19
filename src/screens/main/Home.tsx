@@ -1,9 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import CustomText from '../../components/CustomText';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import {scale} from 'react-native-size-matters';
+import CustomText from '../../components/CustomText';
 import {greetingMessage} from '../../helpers/greetings';
-import auth from '@react-native-firebase/auth';
 
 const Home = () => {
   return (

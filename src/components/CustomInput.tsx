@@ -2,16 +2,25 @@ import {StyleSheet, Text, View, TextInputProps, TextInput} from 'react-native';
 import React from 'react';
 import {scale} from 'react-native-size-matters';
 import {colors} from '../constants/colors';
+import CustomText from './CustomText';
 
 interface Props extends TextInputProps {
   label: string;
+  errorMessage?: string;
 }
 
-const CustomInput = ({label, ...rest}: Props) => {
+const CustomInput = ({label, errorMessage, ...rest}: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
-      <TextInput style={styles.input} {...rest} />
+      <CustomText textStyle={styles.label}>{label}</CustomText>
+      <TextInput
+        style={[
+          styles.input,
+          {borderColor: !!errorMessage ? colors.red : colors.grey},
+        ]}
+        {...rest}
+      />
+      <CustomText textStyle={styles.error}>{errorMessage}</CustomText>
     </View>
   );
 };
@@ -27,12 +36,17 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: scale(1),
-    borderColor: colors.grey,
     flex: 1,
     height: scale(36),
     borderRadius: scale(8),
-    marginBottom: scale(10),
     paddingStart: scale(5),
     color: colors.black,
+    fontSize: scale(13),
+  },
+  error: {
+    fontSize: scale(12),
+    color: colors.red,
+    flex: 1,
+    marginBottom: scale(5),
   },
 });

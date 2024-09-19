@@ -1,10 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
 import moment from 'moment';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {BarChart} from 'react-native-gifted-charts';
+import {colors} from '../../constants/colors';
 import {getUsers} from '../../services/DatabaseService';
+import CustomText from '../../components/CustomText';
+import {scale} from 'react-native-size-matters';
 
-const monthCounts = {
+const monthCounts: any = {
   Jan: 0,
   Feb: 0,
   Mar: 0,
@@ -25,9 +28,8 @@ const Dashboard = () => {
   useEffect(() => {
     getUsers((data: any) => {
       console.log({data});
-      // Iterate over the user data and count the number of signups per month
       if (data?.length) {
-        data?.forEach(user => {
+        data?.forEach((user: any) => {
           const month = moment(user.SignupDate, ['DD-MM-YYYY']).format('MMM');
           console.log({month});
           if (monthCounts[month] !== undefined) {
@@ -35,7 +37,6 @@ const Dashboard = () => {
           }
         });
 
-        // Convert the monthCounts object to an array of {label, value} objects for the BarChart
         const temp = Object.keys(monthCounts).map(month => ({
           value: monthCounts[month],
           label: month,
@@ -46,21 +47,43 @@ const Dashboard = () => {
     });
   }, []);
 
-  // Initialize an object to hold the count of users per month
-
   if (!barData) return null;
 
   return (
-    <BarChart
-      data={barData}
-      barWidth={30}
-      barBorderRadius={5}
-      frontColor="#6a5acd"
-      spacing={15}
-    />
+    <View style={styles.container}>
+      <CustomText textStyle={styles.heading}>User List Month Wise</CustomText>
+      <BarChart
+        data={barData}
+        barWidth={30}
+        barBorderRadius={5}
+        frontColor={colors.blue}
+        spacing={15}
+        xAxisColor={colors.black}
+        xAxisLabelTextStyle={{
+          color: colors.black,
+        }}
+        yAxisColor={colors.black}
+        color={colors.black}
+        yAxisTextStyle={{
+          color: colors.black,
+        }}
+      />
+    </View>
   );
 };
 
 export default Dashboard;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  heading: {
+    fontSize: scale(18),
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: scale(30),
+  },
+});
