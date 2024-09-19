@@ -49,10 +49,6 @@ const Signup = () => {
           })
           .then(() => {
             setLoading(false);
-
-            navigation.dispatch(
-              StackActions.replace(RootStackNames.BottomTabs),
-            );
           });
       })
       .catch(error => {

@@ -6,20 +6,11 @@ import {greetingMessage} from '../../helpers/greetings';
 import auth from '@react-native-firebase/auth';
 
 const Home = () => {
-  const [greeting, setGreeting] = useState('');
-
-  useEffect(() => {
-    setGreetingMessage();
-  }, []);
-
-  const setGreetingMessage = async () => {
-    await auth().currentUser?.reload();
-    let msg = greetingMessage();
-    setGreeting(msg);
-  };
   return (
     <View style={styles.container}>
-      <CustomText textStyle={styles.greetingText}>{greeting}</CustomText>
+      <CustomText textStyle={styles.greetingText}>
+        {greetingMessage()}
+      </CustomText>
     </View>
   );
 };

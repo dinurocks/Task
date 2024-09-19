@@ -13,7 +13,6 @@ const Profile = () => {
   const handleLogout = async () => {
     try {
       await auth().signOut();
-      navigation.dispatch(StackActions.replace(RootStackNames.Auth));
     } catch (err) {
       console.log('handle logout err', err);
     }
@@ -23,6 +22,7 @@ const Profile = () => {
       <CustomText textStyle={styles.commonTextStyle}>
         {currentUser?.displayName}
       </CustomText>
+
       <CustomText textStyle={styles.commonTextStyle}>
         {currentUser?.email}
       </CustomText>

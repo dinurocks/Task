@@ -30,11 +30,11 @@ const RootStack = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      {/* {!user ? ( */}
-      <Stack.Screen name={RootStackNames.Auth} component={AuthStack} />
-      {/* ) : ( */}
-      <Stack.Screen name={RootStackNames.BottomTabs} component={BottomTabs} />
-      {/* )} */}
+      {!user ? (
+        <Stack.Screen name={RootStackNames.Auth} component={AuthStack} />
+      ) : (
+        <Stack.Screen name={RootStackNames.BottomTabs} component={BottomTabs} />
+      )}
     </Stack.Navigator>
   );
 };
