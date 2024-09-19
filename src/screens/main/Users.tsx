@@ -4,18 +4,21 @@ import {getUsers} from '../../services/DatabaseService';
 import {colors} from '../../constants/colors';
 import {scale} from 'react-native-size-matters';
 import CustomText from '../../components/CustomText';
+import {useFocusEffect} from '@react-navigation/native';
 
 const Users = () => {
   const [users, setUsers] = useState<any>([]);
 
-  useEffect(() => {
-    getUsers((data: any) => setUsers(data));
-  }, []);
-  console.log('adad', users);
+  useFocusEffect(
+    React.useCallback(() => {
+      getUsers((data: any) => setUsers(data));
+    }, []),
+  );
 
   return (
     <View>
       <FlatList
+        contentContainerStyle={{flexGrow: 1}}
         data={users}
         keyExtractor={item => item.ID.toString()}
         renderItem={({item}) => (

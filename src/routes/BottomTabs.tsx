@@ -8,6 +8,7 @@ import Profile from '../screens/main/Profile';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../constants/colors';
 import {scale} from 'react-native-size-matters';
+import {Platform} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,10 @@ const BottomTabs = () => {
           fontWeight: '600',
         },
         tabBarStyle: {
-          height: scale(48),
+          height: Platform.select({
+            android: scale(48),
+            ios: scale(70),
+          }),
         },
       }}>
       <Tab.Screen

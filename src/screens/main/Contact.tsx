@@ -85,6 +85,7 @@ const Contact = () => {
         inputStyle={{
           maxHeight: scale(150),
           height: 'auto',
+          minHeight: scale(50),
         }}
       />
 
